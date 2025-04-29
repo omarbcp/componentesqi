@@ -1,0 +1,124 @@
+.qi_contenedor_modal {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 9999;
+}
+.qi_contenedor_modal .qi_modal {
+    max-width: 345px;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px rgba(0, 67, 206, 0.1);
+    width: 100%;
+    z-index: 2;
+    border-radius: 8px;
+    font-family: 'Flexo';
+    overflow:hidden;
+}
+.qi_contenedor_modal form-captcha {
+    display: none;
+}
+.qi_contenedor_modal .qi_modal > button {
+    position: absolute;
+    right: 6px;
+    top: 12px;
+    background: transparent;
+    border: unset;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.qi_contenedor_modal .qi_modal ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.qi_contenedor_modal .qi_modal ul > li {
+    display: flex;
+    align-items: flex-start;
+}
+.qi_contenedor_modal .qi_modal ul > li p {
+    color: #202e44;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Flexo';
+    margin:0 0 8px 0;
+}
+.qi_contenedor_modal .qi_modal ul > li img {
+    width: 20px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+}
+.qi_grupo_botones{
+    display: flex;
+    flex-direction: row-reverse;
+}
+@media (max-width:768px) {
+    .qi_contenedor_modal {
+        padding: 0px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background: rgb(32 46 68 / 85%);
+        top: 0px;
+        left: 0px;
+    }
+    .qi_contenedor_modal .qi_modal.cerrar {
+        opacity: 1;
+        animation: fadeOut 1s ease-out forwards;
+    }
+
+    .qi_contenedor_modal .qi_modal.mostrar {
+        opacity: 0;
+        animation: fadeIn 1s ease-in forwards;
+    }
+}
+@media (min-width:769px) {
+    .qi_contenedor_modal {
+        padding: 0px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+    .qi_contenedor_modal .qi_modal.cerrar {
+        animation: slide-down 1s;
+        bottom: -100%;
+    }
+    .qi_contenedor_modal .qi_modal.mostrar {
+        bottom: 10px;
+        animation: slide-up 1s;
+        right: 10px;
+    }
+}
+/*EFECTOS*/
+@keyframes slide-down {
+    0% {bottom: 16px;}
+    100% {bottom: -100%;}
+}
+@keyframes slide-up {
+    0% {bottom: -100%;}
+    80% {bottom: 60px;}
+    100% {bottom: 16px;}
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}

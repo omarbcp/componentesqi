@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QI MODAL</title>
+    <link rel="stylesheet" href="qi-modal.css">
+</head>
+<body>
+    <qi-modal id="travel"></qi-modal>
+    <script src="qi-modal.js"></script>
+    <script>
+        const htmlContent = `<div class="contenedor_moc_body_home ocultar" id="step2">
+                <div class="title_step2">Déjanos tus datos y un asesor se comunicará contigo</div>
+                <div class="contenedor_moc_input">
+                    <form-input id="modal-dni" name="modal-dni" datatype="tel"
+                        minlength="8" maxlength="8" constraint="soloNumeros" label="Número de DNI"
+                        msgerror="Ingresa Nº documento válido." taggeo="DNI">
+                    </form-input>
+                </div>
+                <div class="contenedor_moc_input">
+                    <form-input id="modal-nombre" name="modal-nombre" datatype="text"
+                        minlength="3" maxlength="50" constraint="soloLetras" label="Nombre y Apellido"
+                        msgerror="Ingresa un nombre" taggeo="Nombre">
+                    </form-input>
+                </div>
+                <div class="contenedor_moc_input">
+                    <form-input id="modal-celular" name="modal-celular" datatype="tel"
+                        minlength="9" maxlength="9" constraint="soloTelefonos" label="Celular"
+                        msgerror="Ingresa tu número móvil" taggeo="Celular">
+                    </form-input>
+                </div>
+                <div class="contenedor_moc_checkbox">
+                    <input type="checkbox" name="tyc-viajes" id="tyc-viajes" class="check_orange">
+                    <div>Al dar clic en “Contáctenme ”, tus datos personales serán tratados conforme a nuestros <a class="tyc_link">Términos y condiciones.</a></div>
+                </div>
+                <div class="contenedor_moc_actions">
+                    <div class="contenedor_moc_button">
+                        <button class="btn_text_orange btn_volver">Volver</button>
+                        <button class="bcp_boton_naranja  btn_comprar">Contáctenme</button>
+                    </div>
+                </div>
+            </div>`
+        const modal = document.querySelector('#travel')
+        modal.data = htmlContent
+    </script>
+</body>
+</html>
