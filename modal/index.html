@@ -1,48 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QI MODAL</title>
-    <link rel="stylesheet" href="qi-modal.css">
-</head>
-<body>
-    <qi-modal id="travel"></qi-modal>
-    <script src="qi-modal.js"></script>
-    <script>
-        const htmlContent = `<div class="contenedor_moc_body_home ocultar" id="step2">
-                <div class="title_step2">Déjanos tus datos y un asesor se comunicará contigo</div>
-                <div class="contenedor_moc_input">
-                    <form-input id="modal-dni" name="modal-dni" datatype="tel"
-                        minlength="8" maxlength="8" constraint="soloNumeros" label="Número de DNI"
-                        msgerror="Ingresa Nº documento válido." taggeo="DNI">
-                    </form-input>
-                </div>
-                <div class="contenedor_moc_input">
-                    <form-input id="modal-nombre" name="modal-nombre" datatype="text"
-                        minlength="3" maxlength="50" constraint="soloLetras" label="Nombre y Apellido"
-                        msgerror="Ingresa un nombre" taggeo="Nombre">
-                    </form-input>
-                </div>
-                <div class="contenedor_moc_input">
-                    <form-input id="modal-celular" name="modal-celular" datatype="tel"
-                        minlength="9" maxlength="9" constraint="soloTelefonos" label="Celular"
-                        msgerror="Ingresa tu número móvil" taggeo="Celular">
-                    </form-input>
-                </div>
-                <div class="contenedor_moc_checkbox">
-                    <input type="checkbox" name="tyc-viajes" id="tyc-viajes" class="check_orange">
-                    <div>Al dar clic en “Contáctenme ”, tus datos personales serán tratados conforme a nuestros <a class="tyc_link">Términos y condiciones.</a></div>
-                </div>
-                <div class="contenedor_moc_actions">
-                    <div class="contenedor_moc_button">
-                        <button class="btn_text_orange btn_volver">Volver</button>
-                        <button class="bcp_boton_naranja  btn_comprar">Contáctenme</button>
-                    </div>
-                </div>
-            </div>`
-        const modal = document.querySelector('#travel')
-        modal.data = htmlContent
-    </script>
-</body>
-</html>
+<style id="customCSS">
+     .qi_contenedor_modal > .qi_modal{
+        background: #fff url("/wcm/connect/0210ec95-e1d9-4ee7-9139-1d3944a3a635/Modal+SOS_1.jpg?MOD=AJPERES&attachment=true&id=1740426716002") no-repeat 0 0;
+        height: 494px;
+        width: 326px;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        border-radius: 10px;
+        overflow:hidden;
+    }
+    .qi_contenedor_modal .qi_modal > button svg path {
+        fill: #fff;
+    }
+    .qi_contenedor_modal > .qi_modal qi-step {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+    }
+    .section-first {
+        padding-bottom: 12px;
+        border-bottom: 1px solid #fff;
+        margin: 0 16px;
+        color:#fff;
+    }
+    .section-first > :nth-child(1) {
+        font-family: 'Flexo-Demi';
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0px;
+        margin-bottom: 8px;
+    }
+    .section-first > :nth-child(2) {
+        font-family: 'Flexo';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0px;
+    }
+    .section-first > :nth-child(2) > span {
+        font-family: 'Flexo-Demi';
+    }
+    .section-second {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+        align-items: flex-start;
+        margin:18px 16px 16px 16px;
+        color:#FFFFFF;
+    }
+    .p_info {
+        display: flex;
+    }
+    .p_info > div {
+        margin-left: 8px;
+    }
+    .p_info > div > :nth-child(1) {
+        font-family: 'Flexo-Demi';
+        font-size: 14px;
+        line-height: 16.8px;
+    }
+    .p_info > div > :nth-child(2) {
+        font-family: 'Flexo';
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-third {
+        font-family: Flexo;
+        font-size: 10px;
+        line-height: 12px;
+        text-align: left;
+        color:#FFF;
+        margin:0 16px 16px 16px;
+    }
+    .section-third > a,
+    .section-third > a:hover,
+    .section-third > a:link,
+    .section-third > a:active {
+        color:#ff7800;
+        cursor: pointer;
+    }
+    .bcp_cintillo_seguro{
+        position: relative;
+        height: 0px;
+        z-index: 12;
+    }
+
+    .bcp_cintillo_seguro img{
+        width: 92px;
+        position: relative;
+        right: 6px;
+        top: -10px;
+    }
+    .txt_small_gris_primary {
+        font-family: Flexo;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14.4px;
+        letter-spacing: 0px; 
+        width: 100%;
+        margin-bottom: 16px;
+    }
+    .txt_small_gris_primary {
+       color:#606C7F;
+    }
+    .txt_small_gris_primary > a,
+    .txt_small_gris_primary > a:hover,
+    .txt_small_gris_primary > a:active {
+        color:#ff7800;
+        cursor: pointer;
+    }
+</style>
+<qi-modal id="travel"></qi-modal>
+<script>
+    const customCSS = document.querySelector('#customCSS')
+    const dataTravel = {
+        body:{
+            section1: [
+                {clase:'p_title_primary',content:'¿Viajas pronto? Gana un vale de S/ 500 asegurándote',type:builHTML},
+                {clase:'p_title_secundary',content:'Hasta con <span>$ 50,000</span> en cobertura médica.',type:builHTML}
+            ],
+            section2:[
+                {clase:'p_info',content:'<img src="/wcm/connect/f4a45b4c-3598-4ecb-9c6f-0aa2b8adaa4e/Modal_Botiqui%CC%81n+1.svg?MOD=AJPERES&attachment=true&id=1740440415524"><div><div>Seguro de Viajes</div><div>Desde $ 2.93 por día</div></div>',type:builHTML},
+                {clase:['p_button'],
+                content:[
+                    {
+                        clases:'bcp_boton_naranja',
+                        label:'Lo quiero',
+                        functions:openURL
+                    }
+                    ],
+                    type:builButtons
+                }
+            ],
+            section3:'Comprando el seguro participas del sorteo, revisa<br>las bases <a id="tycODV">aquí</a>.'
+        },
+        taggeo:{
+            version:'Seguros'
+        }    
+    }
+    function openURL(){
+        //taggeoActionMulti({label:'Lo quiero'})
+        window.open("https://seguro-viaje.pacifico.com.pe/bcp","_blank")
+    }
+    const sections = [
+        new QIHTMLElement().addClass('section-first').addchildren(builMaster(dataTravel.body.section1)).getElement(),
+        new QIHTMLElement().addClass('section-second').addchildren(builMaster(dataTravel.body.section2)).getElement(),
+        new QIHTMLElement().addClass('section-third').setHTML(dataTravel.body.section3).getElement(),
+    ]
+    //Instanciar el modal
+    const modalTravel = document.querySelector('#travel')
+    modalTravel.addCSS(customCSS)
+    modalTravel.data = sections
+</script>
