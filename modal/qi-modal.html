@@ -1,4 +1,5 @@
-const style = `
+<script>
+    const style = `
 <style>
 .qi_contenedor_modal {
     position: fixed;
@@ -126,13 +127,14 @@ class QIModal extends HTMLElement {
     connectedCallback(){
         console.log("Elemento conectado al DOM");
         this.shadowRoot.appendChild(this.contenedor);
-        this.buttonCerrar.addEventListener('click', () => {this.hide()})
+        this.buttonCerrar.addEventListener('click', () => {
+            this.hide()
+            this.taggeo({label:"cerrar"})
+        })
     }
     addCSS(css){
-        const style = document.createElement('style')
-        style.textContent = css
-        this.shadowRoot.appendChild(style)
-        this.shadowRoot.insertBefore(style, this.contenedor)
+        this.idCSS = css.getAttribute('id')
+        this.shadowRoot.insertBefore(css, this.contenedor)
     }
     /**
      * @param {string[]} data
@@ -143,13 +145,18 @@ class QIModal extends HTMLElement {
         this.modal.appendChild(step)
         this.view()
     }
+    destroy(){
+        this.hide()
+        this.shadowRoot.querySelector('#'+this.idCSS)?.remove()
+        this.shadowRoot.querySelector('qi-step')?.remove()
+    }
     view(){
+        this.modal.classList.remove('cerrar')
         this.modal.classList.add('mostrar')
     }
     hide(){
         this.modal.classList.remove('mostrar')
         this.modal.classList.add('cerrar')
-        this.taggeo({label:"cerrar"})
     }
     taggeo(taggeoCustom){
         const taggeoDataDefault = {
@@ -272,3 +279,4 @@ const builMaster = (data)=>{
         })
     return containerELement
 }
+</script>
